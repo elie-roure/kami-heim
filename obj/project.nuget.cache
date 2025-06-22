@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "t/5048gM0Ag=",
+  "dgSpecHash": "CFQflmqU+70=",
   "success": true,
   "projectFilePath": "C:\\Users\\eliee\\source\\repos\\kami-heim\\kami-heim.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\eliee\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
+    "C:\\Users\\eliee\\.nuget\\packages\\materialdesignthemes\\5.2.1\\materialdesignthemes.5.2.1.nupkg.sha512",
+    "C:\\Users\\eliee\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
+  ],
   "logs": []
 }

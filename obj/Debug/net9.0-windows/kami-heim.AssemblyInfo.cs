@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kami-heim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a11a9cc1d33df3a6a349379c17c8351c3b4ef00")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c37fb7d297087de0a4ae1f8ed67ddf55aeb4626")]
 [assembly: System.Reflection.AssemblyProductAttribute("kami-heim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kami-heim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
