@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP
 C:\Users\eliee\source\repos\kami-heim\App.xaml
-11407045341
+4-920465255
 
-6-648858864
-204696497137
-MainWindow.xaml;
+211319859182
+222-1147552809
+MainWindow.xaml;Views\AccueilView.xaml;Views\AjouterLocataireView.xaml;Views\LocatairesView.xaml;
 
 False
 

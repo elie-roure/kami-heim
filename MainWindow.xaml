@@ -1,37 +1,40 @@
 ﻿<Window x:Class="kami_heim.MainWindow"
-        Style="{StaticResource MaterialDesignWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="Accueil - Gestion de biens" Height="450" Width="800">
+        Title="Kami Heim" Height="500" Width="900"
+        Icon="Ressources/Assets/favicon.ico" Cursor="" UseLayoutRounding="False">
     <Grid Background="{DynamicResource MaterialDesignPaper}">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
-            <TextBlock Text="Bienvenue sur Kami Heim"
-                       FontSize="28"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource MaterialDesignBody}"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,8"/>
-            <TextBlock Text="Gérez facilement vos biens immobiliers et vos locataires."
-                       FontSize="16"
-                       Foreground="{DynamicResource MaterialDesignBody}"
-                       TextAlignment="Center"
-                       Margin="0,0,0,24"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Biens"
-                        Width="120"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="0,0,16,0"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="False"/>
-                <Button Content="Locataires"
-                        Width="120"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="0"
-                        materialDesign:ButtonProgressAssist.IsIndeterminate="False"/>
-            </StackPanel>
-        </StackPanel>
+        <DockPanel LastChildFill="True">
+            <!-- Menu horizontal MaterialDesign -->
+            <materialDesign:ColorZone Mode="PrimaryDark" DockPanel.Dock="Top" Height="56">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Kami Heim"
+                               Foreground="White"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="16,0,32,0"
+                               VerticalAlignment="Center"/>
+                    <Button Content="Accueil"
+                            Command="{Binding AfficherAccueilCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="White"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Biens"
+                            Command="{Binding AfficherBiensCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="White"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Locataires"
+                            Command="{Binding AfficherLocatairesCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="White"
+                            Margin="0,0,8,0"/>
+                </StackPanel>
+            </materialDesign:ColorZone>
+
+            <!-- Vue dynamique -->
+            <ContentControl Content="{Binding VueCourante}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        </DockPanel>
     </Grid>
 </Window>
