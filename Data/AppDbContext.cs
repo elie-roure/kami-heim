@@ -20,8 +20,28 @@ namespace kami_heim.Data
             options.UseSqlite($"Data Source={dbPath}");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Bien>()
+                .HasKey(b => b.Id);
+            modelBuilder.Entity<Locataire>()
+                .HasKey(l => l.Id);
+            modelBuilder.Entity<Location>()
+                .HasKey(l => new { l.BienId, l.LocataireId });
+            modelBuilder.Entity<Location>()
+       .HasOne(l => l.Bien)
+       .WithMany(b => b.Locations)
+       .HasForeignKey(l => l.BienId);
+            modelBuilder.Entity<Location>()
+        .HasOne(l => l.Locataire)
+        .WithMany(lc => lc.Locations)
+        .HasForeignKey(l => l.LocataireId);
+        }
         // Ajoutez vos DbSet ici, par exemple :
         // public DbSet<Bien> Biens { get; set; }
-         public DbSet<Locataire> Locataires { get; set; }
+        public DbSet<Locataire> Locataires { get; set; }
+        public DbSet<Bien> Biens { get; set; }
+
+
     }
 }

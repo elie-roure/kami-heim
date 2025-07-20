@@ -9,27 +9,27 @@ using kami_heim.Models;
 
 namespace kami_heim.ViewsModels
 {
-    class CreerLocatairesViewModel : INotifyPropertyChanged
+    class AjouterBienViewModel : INotifyPropertyChanged
     {
-        public Locataire Locataire { get; set; } = new();
+        public Bien Bien { get; set; } = new();
 
         public ICommand AjouterCommand { get; }
 
         private readonly Action? _retourAction;
 
-        public CreerLocatairesViewModel(Action? retourAction = null)
+        public AjouterBienViewModel(Action? retourAction = null)
         {
             _retourAction = retourAction;
-            AjouterCommand = new RelayCommand(AjouterLocataire);
+            AjouterCommand = new RelayCommand(AjouterBien);
         }
 
-        private void AjouterLocataire()
+        private void AjouterBien()
         {
             using var db = new AppDbContext();
-            db.Locataires.Add(Locataire);
+            db.Biens.Add(Bien);
             db.SaveChanges();
-            Locataire = new Locataire();
-            OnPropertyChanged(nameof(Locataire));
+            Bien = new Bien();
+            OnPropertyChanged(nameof(Bien));
 
             // Naviguer vers la liste après ajout
             _retourAction?.Invoke();

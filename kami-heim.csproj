@@ -33,6 +33,12 @@
     <Compile Update="ViewsModels\MainViewModel.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
+    <Compile Update="Views\AjouterBienView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\BiensView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

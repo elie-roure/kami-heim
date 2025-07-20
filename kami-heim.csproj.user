@@ -24,7 +24,13 @@
     <Page Update="Views\AccueilView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\AjouterBienView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\AjouterLocataireView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\BiensView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LocatairesView.xaml">

@@ -17,7 +17,7 @@ namespace kami_heim.ViewsModels
 
         public ICommand AfficherAccueilCommand { get; }
         public ICommand AfficherLocatairesCommand { get; }
-        //public ICommand AfficherCreerLocatairesCommand { get; }
+        public ICommand AfficherBiensCommand { get; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -33,7 +33,7 @@ namespace kami_heim.ViewsModels
 
             AfficherAccueilCommand = new RelayCommand(() => _navigationService.NaviguerVers(new AccueilView()));
             AfficherLocatairesCommand = new RelayCommand(() => _navigationService.NaviguerVers(new LocatairesView { DataContext = new LocatairesViewModel() }));
-            //AfficherCreerLocatairesCommand = new RelayCommand(() => _navigationService.NaviguerVers(new CreerLocatairesView()));
+            AfficherBiensCommand = new RelayCommand(() => _navigationService.NaviguerVers(new BiensView { DataContext = new BiensViewModel() }));
 
             // Vue par défaut  
             _navigationService.NaviguerVers(new AccueilView());
@@ -47,16 +47,6 @@ namespace kami_heim.ViewsModels
                         OnPropertyChanged(nameof(VueCourante));
                 };
             }
-
-
-            ChargerLocataires();
-        }
-
-        private void ChargerLocataires()
-        {
-            using var db = new AppDbContext();
-            Locataires = new ObservableCollection<Locataire>(db.Locataires.ToList());
-            OnPropertyChanged(nameof(Locataires));
         }
     }
 }
