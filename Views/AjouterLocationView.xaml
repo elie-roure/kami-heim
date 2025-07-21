@@ -6,36 +6,19 @@
         xmlns:local="clr-namespace:kami_heim.Views"
         mc:Ignorable="d"
         Height="360" Width="600">
-    <Grid Background="{DynamicResource MaterialDesignPaper}" Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <StackPanel>
+            <TextBlock Text="Bien :" Margin="15,15,0,0" FontWeight="Bold" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding Biens}" SelectedItem="{Binding Location.Bien}" DisplayMemberPath="Adresse" Margin="10,0,10,5"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,10">
-            <TextBlock Text="Bien :" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <ComboBox ItemsSource="{Binding Biens}" 
-              SelectedItem="{Binding BienSelectionne}" 
-              DisplayMemberPath="Adresse"
-              Width="200"/>
+            <TextBlock Text="Locataire :"  Margin="15,15,0,0" FontWeight="Bold" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding Locataires}" SelectedValue="{Binding Location.LocataireId}" SelectedValuePath="Id"  DisplayMemberPath="Nom" Margin="10,0,10,5"/>
+
+            <TextBlock Text="Date début :"  Margin="15,15,0,0" FontWeight="Bold" FontSize="14"/>
+            <DatePicker SelectedDate="{Binding Location.DateDebut}" Margin="10,0,10,5"/>
+
+            <Button Content="Ajouter" Command="{Binding AjouterCommand}"  Width="100" HorizontalAlignment="Right" Cursor="Hand" Margin="5,20,25,10"/>
         </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10">
-            <TextBlock Text="Locataire :" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <ComboBox ItemsSource="{Binding Locataires}" 
-              SelectedItem="{Binding LocataireSelectionne}" 
-              DisplayMemberPath="Nom"
-              Width="200"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,10">
-            <TextBlock Text="Date début :" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <DatePicker SelectedDate="{Binding DateDebut}" Width="200"/>
-        </StackPanel>
-
-        <Button Content="Créer la location" Grid.Row="3" Margin="0,20,0,0"
-        Command="{Binding AjouterCommand}" Width="150"/>
     </Grid>
+    
 </UserControl>

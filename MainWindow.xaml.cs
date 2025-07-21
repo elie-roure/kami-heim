@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using kami_heim.Data;
 using kami_heim.Services;
 using kami_heim.Views;
 using kami_heim.ViewsModels;
@@ -25,6 +26,7 @@ namespace kami_heim
             InitializeComponent();
 
             DataService dataService = new DataService();
+            SeedData.Initialize(dataService.Context);
             INavigationService navigationService = new NavigationService();
             DataContext = new MainViewModel(dataService,navigationService);
 

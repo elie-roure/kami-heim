@@ -18,19 +18,14 @@ namespace kami_heim.ViewsModels
         private readonly Action? _retourAction;
         public ObservableCollection<Bien> Biens { get; set; }
         public ObservableCollection<Locataire> Locataires { get; set; }
-
-        public Bien BienSelectionne { get; set; }
-        public Locataire LocataireSelectionne { get; set; }
-        public DateTime DateDebut { get; set; } = DateTime.Today;
-
         public ICommand AjouterCommand { get; }
+        public Location Location { get; set; } = new();
 
-
-
-        public AjouterLocationViewModel(DataService dataService,Action? retourAction = null)
+        public AjouterLocationViewModel(DataService dataService, Action? retourAction = null)
         {
             _dataService = dataService;
             _retourAction = retourAction;
+            Location.DateDebut = DateTime.Today;
             ChargerBiens();
             ChargerLocataires();
 
@@ -49,22 +44,11 @@ namespace kami_heim.ViewsModels
         }
         private void AjouterLocation()
         {
-            if (BienSelectionne != null && LocataireSelectionne != null)
-            {
+            _dataService.Context.Locations.Add(Location);
+            _dataService.Context.SaveChanges();
 
-                var location = new Location
-                {
-                    BienId = BienSelectionne.Id,
-                    LocataireId = LocataireSelectionne.Id,
-                    DateDebut = DateDebut
-                };
-
-                _dataService.Context.Locations.Add(location);
-                 _dataService.Context.SaveChanges();
-
-                // Naviguer vers la liste après ajout
-                _retourAction?.Invoke();
-            }
+            // Naviguer vers la liste après ajout
+            _retourAction?.Invoke();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
