@@ -17,7 +17,7 @@ namespace kami_heim.Views
     /// <summary>
     /// Logique d'interaction pour AjouterLocataireView.xaml
     /// </summary>
-    public partial class AjouterLocataireView : Window
+    public partial class AjouterLocataireView : UserControl
     {
         public AjouterLocataireView()
         {

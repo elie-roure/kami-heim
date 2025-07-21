@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP
 C:\Users\eliee\source\repos\kami-heim\App.xaml
-6-41729613
+81245452005
 
-32-1260564911
+39330973101
 222-1147552809
-MainWindow.xaml;Views\AccueilView.xaml;Views\AjouterBienView.xaml;Views\AjouterLocataireView.xaml;Views\BiensView.xaml;Views\LocatairesView.xaml;
+MainWindow.xaml;Views\AccueilView.xaml;Views\AjouterBienView.xaml;Views\AjouterLocataireView.xaml;Views\AjouterLocationView.xaml;Views\BiensView.xaml;Views\LocatairesView.xaml;Views\LocationsView.xaml;
 
 False
 

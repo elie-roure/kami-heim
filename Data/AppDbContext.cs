@@ -28,19 +28,21 @@ namespace kami_heim.Data
                 .HasKey(l => l.Id);
             modelBuilder.Entity<Location>()
                 .HasKey(l => new { l.BienId, l.LocataireId });
+
             modelBuilder.Entity<Location>()
-       .HasOne(l => l.Bien)
-       .WithMany(b => b.Locations)
-       .HasForeignKey(l => l.BienId);
+                .HasOne(l => l.Bien)
+                .WithMany(b => b.Locations)
+                .HasForeignKey(l => l.BienId);
+
             modelBuilder.Entity<Location>()
-        .HasOne(l => l.Locataire)
-        .WithMany(lc => lc.Locations)
-        .HasForeignKey(l => l.LocataireId);
+                .HasOne(l => l.Locataire)
+                .WithMany(lc => lc.Locations)
+                .HasForeignKey(l => l.LocataireId);
         }
-        // Ajoutez vos DbSet ici, par exemple :
-        // public DbSet<Bien> Biens { get; set; }
+
         public DbSet<Locataire> Locataires { get; set; }
         public DbSet<Bien> Biens { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
 
     }

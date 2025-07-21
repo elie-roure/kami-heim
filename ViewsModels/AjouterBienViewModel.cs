@@ -6,28 +6,30 @@ using System.Windows.Input;
 using kami_heim.Data;
 using kami_heim.Helpers;
 using kami_heim.Models;
+using kami_heim.Services;
 
 namespace kami_heim.ViewsModels
 {
     class AjouterBienViewModel : INotifyPropertyChanged
     {
+        private readonly DataService _dataService;
+        private readonly Action? _retourAction;
         public Bien Bien { get; set; } = new();
 
         public ICommand AjouterCommand { get; }
 
-        private readonly Action? _retourAction;
 
-        public AjouterBienViewModel(Action? retourAction = null)
+        public AjouterBienViewModel(DataService dataService, Action? retourAction = null)
         {
+            _dataService = dataService;
             _retourAction = retourAction;
             AjouterCommand = new RelayCommand(AjouterBien);
         }
 
         private void AjouterBien()
         {
-            using var db = new AppDbContext();
-            db.Biens.Add(Bien);
-            db.SaveChanges();
+            _dataService.Context.Biens.Add(Bien);
+            _dataService.Context.SaveChanges();
             Bien = new Bien();
             OnPropertyChanged(nameof(Bien));
 

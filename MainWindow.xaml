@@ -30,6 +30,11 @@
                             Style="{StaticResource MaterialDesignFlatButton}"
                             Foreground="White"
                             Margin="0,0,8,0"/>
+                    <Button Content="Location"
+                            Command="{Binding AfficherLocationCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="White"
+                            Margin="0,0,8,0"/>
                 </StackPanel>
             </materialDesign:ColorZone>
 

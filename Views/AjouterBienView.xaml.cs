@@ -17,7 +17,7 @@ namespace kami_heim.Views
     /// <summary>
     /// Logique d'interaction pour AjouterBienView.xaml
     /// </summary>
-    public partial class AjouterBienView : Window
+    public partial class AjouterBienView : UserControl
     {
         public AjouterBienView()
         {

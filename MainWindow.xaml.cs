@@ -24,8 +24,10 @@ namespace kami_heim
         {
             InitializeComponent();
 
+            DataService dataService = new DataService();
             INavigationService navigationService = new NavigationService();
-            DataContext = new MainViewModel(navigationService);
+            DataContext = new MainViewModel(dataService,navigationService);
+
         }
     }
 }

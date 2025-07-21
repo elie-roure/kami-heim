@@ -6,36 +6,35 @@ using System.Windows.Input;
 using kami_heim.Data;
 using kami_heim.Helpers;
 using kami_heim.Models;
+using kami_heim.Services;
 using kami_heim.Views;
 
 namespace kami_heim.ViewsModels
 {
     public class BiensViewModel : INotifyPropertyChanged
     {
+        private readonly DataService _dataService;
+        private readonly INavigationService _navigationService;
         public ObservableCollection<Bien> Biens { get; set; } = new();
 
         public ICommand OuvrirAjouterBienCommand { get; }
-        public BiensViewModel()
+        public BiensViewModel(DataService dataService,INavigationService navigationService)
         {
-            OuvrirAjouterBienCommand = new RelayCommand(OuvrirAjouterBien);
+            _dataService = dataService;
+            _navigationService = navigationService;
+            OuvrirAjouterBienCommand = new RelayCommand(() => _navigationService.NaviguerVers(new AjouterBienView { DataContext = new AjouterBienViewModel(_dataService,RetourNaviguerVersAjouterBien) }));
 
             ChargerBiens();
         }
 
         private void ChargerBiens()
         {
-            using var db = new AppDbContext();
-            Biens = new ObservableCollection<Bien>(db.Biens.ToList());
+            Biens = new ObservableCollection<Bien>(_dataService.Context.Biens.ToList());
             OnPropertyChanged(nameof(Biens));
         }
-        private void OuvrirAjouterBien()
+        private void RetourNaviguerVersAjouterBien()
         {
-            var window = new AjouterBienView();
-            window.DataContext = new AjouterBienViewModel();
-            window.Owner = Application.Current.MainWindow;
-            window.ShowDialog();
-            // Après fermeture, recharge la liste
-            ChargerBiens();
+            _navigationService.NaviguerVers(new BiensView { DataContext = new BiensViewModel(_dataService,_navigationService) });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

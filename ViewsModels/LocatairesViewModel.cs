@@ -6,46 +6,35 @@ using System.Windows.Input;
 using kami_heim.Data;
 using kami_heim.Helpers;
 using kami_heim.Models;
+using kami_heim.Services;
 using kami_heim.Views;
 
 namespace kami_heim.ViewsModels
 {
     public class LocatairesViewModel : INotifyPropertyChanged
     {
+        private readonly DataService _dataService;
+        private readonly INavigationService _navigationService;
         public ObservableCollection<Locataire> Locataires { get; set; } = new();
 
         public ICommand OuvrirAjouterLocataireCommand { get; }
-        public LocatairesViewModel()
+        public LocatairesViewModel(DataService dataService, INavigationService navigationService)
         {
-            OuvrirAjouterLocataireCommand = new RelayCommand(OuvrirAjouterLocataire);
+            _dataService = dataService;
+            _navigationService = navigationService;
+            OuvrirAjouterLocataireCommand = new RelayCommand(() => _navigationService.NaviguerVers(new AjouterLocataireView { DataContext = new AjouterLocataireViewModel(_dataService,RetourNaviguerVersAjouterLocataire) }));
 
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                // Données fictives pour le designer
-                Locataires.Add(new Locataire { Nom = "Dupont", Prenom = "Jean", Email = "jean@email.com", Telephone = "0600000000" });
-                Locataires.Add(new Locataire { Nom = "Martin", Prenom = "Sophie", Email = "sophie@email.com", Telephone = "0600000001" });
-            }
-            else
-            {
-                // Chargement réel (base de données)
-                ChargerLocataires();
-            }
+            ChargerLocataires();
         }
 
         private void ChargerLocataires()
         {
-            using var db = new AppDbContext();
-            Locataires = new ObservableCollection<Locataire>(db.Locataires.ToList());
+            Locataires = new ObservableCollection<Locataire>(_dataService.Context.Locataires.ToList());
             OnPropertyChanged(nameof(Locataires));
         }
-        private void OuvrirAjouterLocataire()
+        private void RetourNaviguerVersAjouterLocataire()
         {
-            var window = new AjouterLocataireView();
-            window.DataContext = new AjouterLocataireViewModel();
-            window.Owner = Application.Current.MainWindow;
-            window.ShowDialog();
-            // Après fermeture, recharge la liste
-            ChargerLocataires();
+            _navigationService.NaviguerVers(new LocatairesView { DataContext = new LocatairesViewModel(_dataService,_navigationService) });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

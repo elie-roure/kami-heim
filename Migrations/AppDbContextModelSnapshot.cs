@@ -89,7 +89,7 @@ namespace kami_heim.Migrations
 
                     b.HasIndex("LocataireId");
 
-                    b.ToTable("Location");
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("kami_heim.Models.Location", b =>

@@ -12,12 +12,15 @@ namespace kami_heim.ViewsModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private readonly DataService _dataService;
         private readonly INavigationService _navigationService;
         public object? VueCourante => _navigationService.VueCourante;
 
         public ICommand AfficherAccueilCommand { get; }
         public ICommand AfficherLocatairesCommand { get; }
         public ICommand AfficherBiensCommand { get; }
+        public ICommand AfficherLocationCommand { get; }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -27,13 +30,15 @@ namespace kami_heim.ViewsModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel(DataService dataService, INavigationService navigationService)
         {
+            _dataService = dataService;
             _navigationService = navigationService;
 
             AfficherAccueilCommand = new RelayCommand(() => _navigationService.NaviguerVers(new AccueilView()));
-            AfficherLocatairesCommand = new RelayCommand(() => _navigationService.NaviguerVers(new LocatairesView { DataContext = new LocatairesViewModel() }));
-            AfficherBiensCommand = new RelayCommand(() => _navigationService.NaviguerVers(new BiensView { DataContext = new BiensViewModel() }));
+            AfficherLocatairesCommand = new RelayCommand(() => _navigationService.NaviguerVers(new LocatairesView { DataContext = new LocatairesViewModel(_dataService,_navigationService) }));
+            AfficherBiensCommand = new RelayCommand(() => _navigationService.NaviguerVers(new BiensView { DataContext = new BiensViewModel(_dataService,_navigationService) }));
+            AfficherLocationCommand = new RelayCommand(() => _navigationService.NaviguerVers(new LocationsView { DataContext = new LocationsViewModel(_dataService,_navigationService) }));
 
             // Vue par défaut  
             _navigationService.NaviguerVers(new AccueilView());

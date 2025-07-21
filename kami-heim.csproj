@@ -33,7 +33,13 @@
     <Compile Update="ViewsModels\MainViewModel.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
+    <Compile Update="Views\AjouterLocationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AjouterBienView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LocationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\BiensView.xaml.cs">

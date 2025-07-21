@@ -6,28 +6,31 @@ using System.Windows.Input;
 using kami_heim.Data;
 using kami_heim.Helpers;
 using kami_heim.Models;
+using kami_heim.Services;
+using kami_heim.Views;
 
 namespace kami_heim.ViewsModels
 {
     class AjouterLocataireViewModel : INotifyPropertyChanged
     {
+        private readonly DataService _dataService;
+        private readonly Action? _retourAction;
         public Locataire Locataire { get; set; } = new();
 
         public ICommand AjouterCommand { get; }
 
-        private readonly Action? _retourAction;
 
-        public AjouterLocataireViewModel(Action? retourAction = null)
+        public AjouterLocataireViewModel(DataService dataService, Action? retourAction = null)
         {
+            _dataService = dataService;
             _retourAction = retourAction;
             AjouterCommand = new RelayCommand(AjouterLocataire);
         }
 
         private void AjouterLocataire()
         {
-            using var db = new AppDbContext();
-            db.Locataires.Add(Locataire);
-            db.SaveChanges();
+            _dataService.Context.Locataires.Add(Locataire);
+            _dataService.Context.SaveChanges();
             Locataire = new Locataire();
             OnPropertyChanged(nameof(Locataire));
 

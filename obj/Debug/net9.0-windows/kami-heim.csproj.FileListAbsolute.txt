@@ -156,3 +156,7 @@ C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\refint\kami-heim.
 C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\kami-heim.pdb
 C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\kami-heim.genruntimeconfig.cache
 C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\ref\kami-heim.dll
+C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\Views\LocationsView.baml
+C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\Views\AjouterLocationView.g.cs
+C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\Views\LocationsView.g.cs
+C:\Users\eliee\source\repos\kami-heim\obj\Debug\net9.0-windows\Views\AjouterLocationView.baml
